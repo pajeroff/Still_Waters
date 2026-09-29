@@ -4,7 +4,7 @@ A small, playable Godot 4 pixel-fishing prototype built around the MVP in the co
 
 ## Run
 
-Open this folder in Godot 4.2+ and run `Main.tscn` (or press **F6** after opening the project). The game saves to `user://still_waters_save.json`.
+Open this folder in **Godot 4.7** and run `Main.tscn` (or press **F6** after opening the project). The project targets Godot 4.7 with the GL Compatibility renderer. The game saves to `user://still_waters_save.json`.
 
 ## Controls
 
