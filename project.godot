@@ -1,19 +1,27 @@
-; Engine configuration file.
-; Still Waters — a quiet pixel fishing prototype.
+; Godot Engine project configuration.
+; «Тихий Омут» — isometric movement prototype, Godot 4.7.
 config_version=5
 
 [application]
 config/name="Тихий Омут"
-run/main_scene="res://Main.tscn"
+run/main_scene="res://World.tscn"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 
 [display]
-window/size/viewport_width=320
-window/size/viewport_height=180
-window/size/window_width_override=960
-window/size/window_height_override=540
+window/size/viewport_width=640
+window/size/viewport_height=360
+window/size/window_width_override=1280
+window/size/window_height_override=720
 window/stretch/mode="canvas_items"
 window/stretch/aspect="keep"
+
+[layer_names]
+2d_physics/layer_1="Player"
+2d_physics/layer_2="World"
+2d_physics/layer_3="Water"
+2d_physics/layer_4="NPC"
+2d_physics/layer_5="Interactable"
+2d_physics/layer_6="Trigger"
 
 [rendering]
 renderer/rendering_method="gl_compatibility"

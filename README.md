@@ -1,21 +1,17 @@
-# «Тихий Омут» — Still Waters
+# «Тихий Омут» — Godot 4.7
 
-A small, playable Godot 4 pixel-fishing prototype built around the MVP in the concept brief. The project uses a 320×180 virtual canvas, nearest-neighbour rendering, procedural pixel scenery, and no external assets.
+Изометрический movement-first prototype. Главная сцена — `World.tscn`: тестовая площадка у Старого пруда, восьминаправленный рыбак, ходьба/бег, коллизии, глубинная сортировка, сглаживаемая камера и интерактивные точки.
 
-## Run
+## Запуск
 
-Open this folder in **Godot 4.7** and run `Main.tscn` (or press **F6** after opening the project). The project targets Godot 4.7 with the GL Compatibility renderer. The game saves to `user://still_waters_save.json`.
+Откройте корень проекта в Godot 4.7 и запустите проект. Активная сцена — `World.tscn`. Старый `Main.tscn` сохранён отдельно как ранний прототип рыбалки; приоритет текущей версии — передвижение и изометрическая сцена.
 
-## Controls
+## Управление
 
-- **Enter / Space** — start from the title screen (Enter continues a save; N starts fresh)
-- **Space** — cast, hook during the bite window; hold to reel and release to ease line tension
-- **← / →** — choose bait
-- **J** — fishing journal · **I** — tackle inventory · **M** — dockside shop
-- Shop: **1** buy bait, **2** upgrade rod, **Enter** sell the catch
-- **E** — sleep until morning · **Esc** — pause / close panels
-- Pause: **S** save, **Q** return to title
+- **WASD / стрелки** — движение по изометрическому миру.
+- **Левый стик** — плавное движение; dead zone 0.2.
+- **Shift / нажатие левого стика** — бег.
+- **E / A на геймпаде** — взаимодействие, когда рядом появится подсказка.
+- **Колесо мыши / = и -** — масштаб камеры 1× / 2×.
 
-## Prototype loop
-
-Fish at the Old Pond, react to the bobber, manage line tension while reeling, fill the journal, sell catches, purchase bait and improve the rod. Time advances while playing; rain changes daily, improves bite speed, and unlocks the Golden Carp. The Phantom Eel appears only in rainy late-night hours. Progress is saved automatically after catches, purchases, sleeping, and day rollover.
+Временный пиксельный арт находится в `assets/`; изображения можно пересоздать через `python tools/generate_pixel_art.py` (требуется Pillow). Зафиксированное решение по проекции и архитектуре описано в `docs/ISOMETRIC_STYLE.md`. Полный чек-лист реализации — `ROADMAP.md`.

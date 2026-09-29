@@ -1,0 +1,56 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/world.gd" id="1_world"]
+[ext_resource type="PackedScene" path="res://Player.tscn" id="2_player"]
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_world")
+
+[node name="YSort" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Ground" type="TileMapLayer" parent="YSort"]
+z_index = -20
+y_sort_enabled = true
+
+[node name="Water" type="TileMapLayer" parent="YSort"]
+z_index = -18
+y_sort_enabled = true
+
+[node name="Boardwalk" type="TileMapLayer" parent="YSort"]
+z_index = -16
+y_sort_enabled = true
+
+[node name="Player" parent="YSort" instance=ExtResource("2_player")]
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Title" type="Label" parent="HUD"]
+offset_left = 12.0
+offset_top = 10.0
+offset_right = 320.0
+offset_bottom = 34.0
+theme_override_colors/font_color = Color(0.94, 0.88, 0.72, 1)
+theme_override_colors/font_shadow_color = Color(0.1, 0.16, 0.14, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 18
+text = "СТАРЫЙ ПРУД  ·  ИЗОМЕТРИЧЕСКИЙ ТЕСТ"
+
+[node name="InteractionPrompt" type="Label" parent="HUD"]
+offset_left = 12.0
+offset_top = 40.0
+offset_right = 420.0
+offset_bottom = 64.0
+theme_override_colors/font_color = Color(0.97, 0.79, 0.43, 1)
+theme_override_font_sizes/font_size = 14
+visible = false
+
+[node name="Status" type="Label" parent="HUD"]
+offset_left = 12.0
+offset_top = 322.0
+offset_right = 628.0
+offset_bottom = 354.0
+theme_override_colors/font_color = Color(0.93, 0.9, 0.78, 1)
+theme_override_font_sizes/font_size = 12
+text = "WASD / стрелки — ходить   Shift — бежать   E — взаимодействие"
