@@ -1,6 +1,6 @@
 extends Camera2D
 
-const ZOOM_LEVELS := [1.0, 2.0]
+const ZOOM_LEVELS: Array[float] = [1.0, 2.0]
 
 @export var map_limits := Rect2i(-400, -32, 896, 480)
 @export var smooth_speed := 8.0
@@ -30,5 +30,5 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _set_zoom(direction: int) -> void:
 	_zoom_index = clampi(_zoom_index + direction, 0, ZOOM_LEVELS.size() - 1)
-	var target := Vector2.ONE * ZOOM_LEVELS[_zoom_index]
+	var target: Vector2 = Vector2.ONE * float(ZOOM_LEVELS[_zoom_index])
 	create_tween().tween_property(self, "zoom", target, 0.14)

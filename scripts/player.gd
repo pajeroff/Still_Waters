@@ -63,13 +63,13 @@ func _unhandled_input(event: InputEvent) -> void:
 func _update_facing(direction: Vector2) -> void:
 	var angle := direction.angle()
 	var direction_index := posmod(roundi(angle / (PI / 4.0)), SCREEN_DIRECTIONS.size())
-	facing = SCREEN_DIRECTIONS[direction_index]
+	facing = str(SCREEN_DIRECTIONS[direction_index])
 
 func _interact_with_nearest() -> void:
 	_prune_invalid_interactables()
 	if nearby_points.is_empty():
 		return
-	var target := nearby_points[0]
+	var target: InteractablePoint = nearby_points[0]
 	var nearest_distance := global_position.distance_squared_to(target.global_position)
 	for point in nearby_points:
 		var distance := global_position.distance_squared_to(point.global_position)
