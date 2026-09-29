@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://scripts/ground.gd" id="1_ground"]
+[ext_resource type="Script" path="res://scripts/scenery.gd" id="2_scenery"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="3_player"]
+[ext_resource type="Texture2D" path="res://assets/player.png" id="4_player_texture"]
+[ext_resource type="Script" path="res://scripts/hud.gd" id="5_hud"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_player"]
+radius = 8.0
+height = 26.0
+
+[node name="StillWaters" type="Node2D"]
+
+[node name="Ground" type="Node2D" parent="."]
+texture_filter = 1
+script = ExtResource("1_ground")
+
+[node name="Actors" type="Node2D" parent="."]
+y_sort_enabled = true
+script = ExtResource("2_scenery")
+
+[node name="Player" type="CharacterBody2D" parent="Actors"]
+position = Vector2(1320, 1320)
+collision_layer = 1
+collision_mask = 1
+script = ExtResource("3_player")
+
+[node name="Sprite2D" type="Sprite2D" parent="Actors/Player"]
+texture = ExtResource("4_player_texture")
+position = Vector2(0, -45.08)
+texture_filter = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Actors/Player"]
+position = Vector2(0, -12)
+shape = SubResource("CapsuleShape2D_player")
+
+[node name="Camera2D" type="Camera2D" parent="Actors/Player"]
+position_smoothing_enabled = true
+position_smoothing_speed = 5.0
+offset = Vector2(100, -200)
+limit_left = 0
+limit_top = 0
+limit_right = 3200
+limit_bottom = 2400
+
+[node name="HUD" type="CanvasLayer" parent="."]
+layer = 2
+script = ExtResource("5_hud")
