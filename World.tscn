@@ -1,56 +1,103 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=5 format=3]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_world"]
 [ext_resource type="PackedScene" path="res://Player.tscn" id="2_player"]
+[ext_resource type="Texture2D" path="res://assets/world_backdrop.png" id="3_backdrop"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(0.035, 0.075, 0.12, 0.94)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.35, 0.58, 0.64, 1)
+shadow_color = Color(0.015, 0.035, 0.065, 0.8)
+shadow_size = 5
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_world")
+
+[node name="Backdrop" type="Sprite2D" parent="."]
+position = Vector2(48, 208)
+texture = ExtResource("3_backdrop")
+texture_filter = 1
+z_index = -100
 
 [node name="YSort" type="Node2D" parent="."]
 y_sort_enabled = true
 
 [node name="Ground" type="TileMapLayer" parent="YSort"]
-z_index = -20
+z_index = -110
 y_sort_enabled = true
 
 [node name="Water" type="TileMapLayer" parent="YSort"]
-z_index = -18
+z_index = -109
 y_sort_enabled = true
 
 [node name="Boardwalk" type="TileMapLayer" parent="YSort"]
-z_index = -16
+z_index = -108
 y_sort_enabled = true
 
 [node name="Player" parent="YSort" instance=ExtResource("2_player")]
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
-[node name="Title" type="Label" parent="HUD"]
+[node name="InfoPanel" type="PanelContainer" parent="HUD"]
 offset_left = 12.0
-offset_top = 10.0
-offset_right = 320.0
-offset_bottom = 34.0
-theme_override_colors/font_color = Color(0.94, 0.88, 0.72, 1)
-theme_override_colors/font_shadow_color = Color(0.1, 0.16, 0.14, 1)
-theme_override_constants/shadow_offset_x = 2
-theme_override_constants/shadow_offset_y = 2
+offset_top = 12.0
+offset_right = 232.0
+offset_bottom = 137.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="Margin" type="MarginContainer" parent="HUD/InfoPanel"]
+theme_override_constants/margin_left = 9
+theme_override_constants/margin_top = 7
+theme_override_constants/margin_right = 9
+theme_override_constants/margin_bottom = 7
+
+[node name="Info" type="VBoxContainer" parent="HUD/InfoPanel/Margin"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="HUD/InfoPanel/Margin/Info"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.98, 0.81, 0.43, 1)
 theme_override_font_sizes/font_size = 18
-text = "СТАРЫЙ ПРУД  ·  ИЗОМЕТРИЧЕСКИЙ ТЕСТ"
+text = "ТИХИЙ ОМУТ"
+
+[node name="Location" type="Label" parent="HUD/InfoPanel/Margin/Info"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.91, 0.93, 0.82, 1)
+theme_override_font_sizes/font_size = 14
+text = "Старый пруд  ·  день 1"
+
+[node name="Character" type="Label" parent="HUD/InfoPanel/Margin/Info"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.62, 0.83, 0.69, 1)
+theme_override_font_sizes/font_size = 13
+text = "Рыбак  ·  удочка I"
+
+[node name="Controls" type="Label" parent="HUD/InfoPanel/Margin/Info"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.84, 0.88, 0.83, 1)
+theme_override_font_sizes/font_size = 12
+text = "WASD / стрелки — ходьба\nShift — бег  ·  колесо — зум"
 
 [node name="InteractionPrompt" type="Label" parent="HUD"]
-offset_left = 12.0
-offset_top = 40.0
-offset_right = 420.0
-offset_bottom = 64.0
-theme_override_colors/font_color = Color(0.97, 0.79, 0.43, 1)
-theme_override_font_sizes/font_size = 14
+offset_left = 198.0
+offset_top = 293.0
+offset_right = 442.0
+offset_bottom = 318.0
+theme_override_colors/font_color = Color(1, 0.84, 0.48, 1)
+theme_override_font_sizes/font_size = 15
+horizontal_alignment = 1
 visible = false
 
 [node name="Status" type="Label" parent="HUD"]
-offset_left = 12.0
-offset_top = 322.0
-offset_right = 628.0
+offset_left = 14.0
+offset_top = 330.0
+offset_right = 626.0
 offset_bottom = 354.0
-theme_override_colors/font_color = Color(0.93, 0.9, 0.78, 1)
-theme_override_font_sizes/font_size = 12
-text = "WASD / стрелки — ходить   Shift — бежать   E — взаимодействие"
+theme_override_colors/font_color = Color(0.96, 0.94, 0.85, 1)
+theme_override_font_sizes/font_size = 13
+horizontal_alignment = 1
+text = "Исследуй берега Старого пруда"
