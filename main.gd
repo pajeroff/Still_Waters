@@ -111,7 +111,7 @@ func _update_fight(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if not (event is InputEventKey and event.pressed and not event.echo):
 		return
-	var key := event.keycode
+	var key: int = (event as InputEventKey).keycode
 	match screen:
 		"menu":
 			if key == KEY_ENTER:
